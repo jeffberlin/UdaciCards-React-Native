@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native'
-import { white, black, gray, orange, blue, red } from './colors'
+import { white, black, gray, orange, blue, red, green } from './colors'
 
 export const styles = StyleSheet.create({
   container: {
@@ -26,5 +26,20 @@ export const styles = StyleSheet.create({
     borderColor: Platform.OS === 'ios' ? gray : white,
     borderRadius: Platform.OS === 'ios' ? 3 : 0,
     borderWidth: Platform.OS === 'ios' ? 1 : 0
+  },
+  button: {
+    backgroundColor: orange,
+    width: 150,
+    marginTop: 20,
+    borderRadius: Platform.OS === 'ios' ? 3 : 0,
+    overflow: 'hidden',
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 12,
+    paddingBottom: 12,
+    textAlign: 'center',
+    color: white,
+    fontSize: 18,
+    fontWeight: Platform.OS === 'ios' ? '500' : '300'
   }
 })

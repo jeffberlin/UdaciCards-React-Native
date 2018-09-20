@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, Platform, KeyboardAvoidingView, TextInput
 import { NavigationActions } from 'react-navigation'
 import { saveDeckTitle } from '../utils/helpers'
 import { styles } from '../utils/styles'
+import { Button } from './Button'
 
 class AddDeck extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class AddDeck extends Component {
     const resetNavAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routName: 'MainView', params: { item }})
+        NavigationActions.navigate({ routName: 'Home', params: { item }})
       ]
     })
     dispatch(resetNavAction)
@@ -33,6 +34,7 @@ class AddDeck extends Component {
   }
   render() {
     const { inputText } = this.state
+
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <Text style={styles.headers}>New Deck Title</Text>
@@ -44,6 +46,7 @@ class AddDeck extends Component {
             placeholder={'New Deck Title'}
           />
         </View>
+        <Button onPress={this.createDeck}>Create Deck</Button>
       </KeyboardAvoidingView>
     )
   }
