@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, Platform, KeyboardAvoidingView, TextInput } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import { saveDeckTitle } from '../utils/helpers'
 import { styles } from '../utils/styles'
 
@@ -33,8 +34,8 @@ class AddDeck extends Component {
   render() {
     const { inputText } = this.state
     return (
-      <KeyboardAvoidingView behavior='padding'>
-        <Text>Add Deck</Text>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
+        <Text style={styles.headers}>New Deck Title</Text>
         <View>
           <TextInput
             style={styles.input}
