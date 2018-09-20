@@ -1,5 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native'
+import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
+import { Provider } from 'react-redux'
 
 export default class App extends React.Component {
   render() {
