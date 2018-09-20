@@ -33,10 +33,10 @@ export function saveDeckTitle(deckTitle) {
   })
 }
 
-export function addCardToDeck(title, {question, answer}) {
+export function addCardToDeck(title, { question, answer }) {
   return getDecks().then((decks) => {
     if (decks[title] && decks[title]['questions']) {
-      decks[title]['questions'].push({question, answer})
+      decks[title]['questions'].push({ question, answer })
     }
 
     AsyncStorage.setItem(CARDS_STORAGE_KEY, JSON.stringify(decks))
