@@ -10,6 +10,7 @@ import reducer from './reducers'
 import AddCard from './components/AddCard'
 import AddDeck from './components/AddDeck'
 import Decks from './components/Decks'
+import Quiz from './components/Quiz'
 import { white, orange } from './utils/colors'
 
 function AppStatusBar({ backgroundColor, ...props}) {
@@ -55,18 +56,27 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       header: null
     }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: orange
+      },
+    }
   }
 })
 
 export default class App extends React.Component {
   render() {
     return (
-      // <Provider store={createStore(reducer)}>
-        <View style={styles.container}>
+      <Provider store={createStore(reducer)}>
+        <View style={{ flex: 1 }}>
           <AppStatusBar backgroundColor={orange} barStyle='light-content' />
-          <AddDeck />
+          <MainNavigator />
         </View>
-      // </Provider>
+      </Provider>
     );
   }
 }
