@@ -1,46 +1,56 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text, Platform, StyleSheet } from 'react-native'
-import { getDecks } from '../utils/helpers'
-import { connect } from 'react-redux'
-import { addDeck } from '../actions'
+import { View, TouchableOpacity, Text, Platform, ScrollView, StyleSheet } from 'react-native'
 import { AppLoading } from 'expo'
-
+import { styles } from '../utils/styles'
+import { OpenDeck } from './OpenDeck'
+import { getDecks } from '../utils/api'
+import { formatQuestions } from '../utils/helpers'
 
 class Decks extends Component {
-  state = {
-    ready: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      deckList: {},
+    }
   }
 
   componentDidMount() {
-    getDecks().then((decks) => {
-      this.props.dispatch(addDeck(decks))
-      this.setState({
-        ready: true
-      })
+    getDecks().then(results => {
+      this.setState(() => ({ deckList: results }))
     })
   }
 
-  onItemPress = (item) => {
-    this.props.navigation.navigate(
-      'DeckDetails', { deckTitle: item.title })
-  }
-  render() {
+  navigateToOpenDeck(item) {
+    const { navigate } = this.props.navigation
 
-    if (!this.state.ready) {
-      return <AppLoading />
-    }
+    return navigate('OpenDeck', { item })
+  }
+
+  render() {
+    const { deckList } = this.state
+
     return (
-      <View>
-        <Text>Decks</Text>
-      </View>
+      <ScrollView>
+        <View style={{marginBottom: 40, marginTop: 20}}>
+          <Text style={[styles.headers, {textAlign: 'center', fontSize: 24}]}>Choose a deck!</Text>
+          {Object.keys(deckList).map(item => {
+            return (
+              <View key={deckList[item].title} style={styles.deckView}>
+                <TouchableOpacity onPress={() => this.navigateToOpenDeck(deckList[item].title)}>
+                  <View>
+                    <Text style={styles.deckTitle}>{deckList[item].title}</Text>
+                    <Text style={{marginBottom: 20}}>
+                      {formatQuestions(deckList[item].questions.length)}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            )
+          })}
+        </View>
+      </ScrollView>
     )
   }
 }
 
-function mapStateToProps(decks) {
-  return {
-    decks
-  }
-}
-
-export default connect(mapStateToProps)(Decks)
+export default Decks

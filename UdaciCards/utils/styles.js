@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
     letterSpacing: 0.7,
     color: black,
-
   },
   input: {
     height: 40,
@@ -41,5 +40,27 @@ export const styles = StyleSheet.create({
     color: white,
     fontSize: 18,
     fontWeight: Platform.OS === 'ios' ? '500' : '300'
+  },
+  deckView: {
+    borderRadius: Platform.OS === 'ios' ? 16 : 2,
+    padding: 20,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 17,
+    justifyContent: 'center',
+    shadowColor: 'rgba(0, 0, 0, 0.24)',
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    backgroundColor: white,
+  },
+  deckTitle: {
+    color: orange,
+    fontWeight: '700',
+    fontSize: 20,
+    letterSpacing: .7
   }
 })

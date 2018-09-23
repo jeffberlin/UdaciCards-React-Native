@@ -1,48 +1,17 @@
 import React from 'react'
-import { View, StyleSheet, AsyncStorage } from 'react-native'
-import { FontAwesome, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
+import { AsyncStorage } from 'react-native'
 import { Notifications, Permissions } from 'expo'
-import { CARDS_STORAGE_KEY } from './api'
+
+export function formatQuestions(questionsResults) {
+  const qr = questionsResults
+
+  if (qr === 1) {
+    return `${qr} card`
+  }
+  return `${qr} cards`
+}
 
 const NOTIFICATION_KEY = 'UdaciCards:notifications'
-
-export function getDecks() {
-  return AsyncStorage.getItem(CARDS_STORAGE_KEY)
-    .then(results => {
-      return (
-        results ? JSON.parse(results) : defaultDeck()
-      )
-    })
-}
-
-export function getDeck(id) {
-  return getDecks().then((decks) => (decks[id]))
-}
-
-export function saveDeckTitle(deckTitle) {
-  return getDecks().then((decks) => {
-    if (!decks[deckTitle]) {
-      decks[deckTitle] = {
-        title: deckTitle,
-        questions: []
-      }
-
-      AsyncStorage.setItem(CARDS_STORAGE_KEY, JSON.stringify(decks))
-      return decks
-    }
-  })
-}
-
-export function addCardToDeck(title, { question, answer }) {
-  return getDecks().then((decks) => {
-    if (decks[title] && decks[title]['questions']) {
-      decks[title]['questions'].push({ question, answer })
-    }
-
-    AsyncStorage.setItem(CARDS_STORAGE_KEY, JSON.stringify(decks))
-    return decks
-  })
-}
 
 export function createNotification() {
   return {

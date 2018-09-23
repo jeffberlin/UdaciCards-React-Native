@@ -2,16 +2,15 @@ import React from 'react'
 import { Text, View, Platform, StatusBar } from 'react-native'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
 import { Constants } from 'expo'
 import { styles } from './utils/styles'
-import reducer from './reducers'
 import AddCard from './components/AddCard'
 import AddDeck from './components/AddDeck'
 import Decks from './components/Decks'
 import Quiz from './components/Quiz'
-import { white, orange } from './utils/colors'
+import OpenDeck from './components/OpenDeck'
+import { setLocalNotification } from './utils/helpers'
+import { white, orange, gray } from './utils/colors'
 
 function AppStatusBar({ backgroundColor, ...props}) {
   return (
@@ -22,6 +21,13 @@ function AppStatusBar({ backgroundColor, ...props}) {
 }
 
 const Tabs = createBottomTabNavigator({
+  Decks: {
+    screen: Decks,
+    navigationOptions: {
+      tabBarLabel: 'Decks',
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-list-box-outline' size={30} color={tintColor} />
+    }
+  },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
@@ -57,6 +63,15 @@ const MainNavigator = createStackNavigator({
       header: null
     }
   },
+  OpenDeck: {
+    screen: OpenDeck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: orange
+      }
+    }
+  },
   Quiz: {
     screen: Quiz,
     navigationOptions: {
@@ -69,14 +84,15 @@ const MainNavigator = createStackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
-      <Provider store={createStore(reducer)}>
         <View style={{ flex: 1 }}>
           <AppStatusBar backgroundColor={orange} barStyle='light-content' />
           <MainNavigator />
         </View>
-      </Provider>
     );
   }
 }

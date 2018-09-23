@@ -1,26 +1,25 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, Platform, KeyboardAvoidingView, TextInput } from 'react-native'
 import { NavigationActions } from 'react-navigation'
-import { saveDeckTitle } from '../utils/helpers'
+import { saveDeckTitle } from '../utils/api'
 import { styles } from '../utils/styles'
 import { Button } from './Button'
 
 class AddDeck extends Component {
   constructor(props) {
-    super(props); {
-      this.state = {
-        inputText: ''
-      }
+    super(props);
+    this.state = {
+      inputText: ''
     }
   }
 
   addNewDeck = () => {
     return saveDeckTitle(this.state.inputText)
-      .then(this.navigateToDeckItem(this.state.inputText),
+      .then(this.toOpenDeck(this.state.inputText),
     )
   }
 
-  navigateToDeckItem = () => {
+  toOpenDeck = () => {
     const { navigate, dispatch } = this.props.navigation
 
     const resetNavAction = NavigationActions.reset({
@@ -30,7 +29,7 @@ class AddDeck extends Component {
       ]
     })
     dispatch(resetNavAction)
-    navigate('DeckItem', { item })
+    navigate('OpenDeck', { item })
   }
   render() {
     const { inputText } = this.state
