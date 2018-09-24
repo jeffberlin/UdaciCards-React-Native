@@ -53,8 +53,8 @@ class OpenDeck extends Component {
 
     return (
       <Animated.View style={[styles.container, { opacity }]}>
-        <Text>{deck.title}</Text>
-        <Text>
+        <Text style={styles.deckTitle}>{deck.title}</Text>
+        <Text style={{alignContent: 'flex-start'}}>
           {formatQuestions(deck.questions.length)}
         </Text>
         <Button onPress={() => this.addNewCard(deck.title)}>

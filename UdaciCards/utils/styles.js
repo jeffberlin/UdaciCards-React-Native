@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
   deckTitle: {
     color: orange,
     fontWeight: '700',
-    fontSize: 20,
+    fontSize: 18,
     letterSpacing: .7
   }
 })
