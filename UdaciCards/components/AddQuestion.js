@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, Platform, KeyboardAvoidingView, Animated, TextInput } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions, StackActions } from 'react-navigation'
 import { addCardToDeck } from '../utils/api'
 import { styles } from '../utils/styles'
 import { Button } from './Button'
@@ -30,11 +30,15 @@ class AddQuestion extends Component {
     Animated.timing(opacity, { toValue: 1, duration: 800 }).start()
   }
 
-  sumbitCard = title => {
+  sumbitCard = (title) => {
     const info = {
       question: this.state.question,
       answer: this.state.answer
     }
+
+    if(!info.question || !info.answer) {
+			return alert('Question and Answer fields are blank!')
+		}
 
     return addCardToDeck(title, info)
       .then(() => this.returnToDecks(this.state.title, info))
@@ -42,11 +46,13 @@ class AddQuestion extends Component {
 
   returnToDecks = (item, info) => {
     const { navigate, dispatch } = this.props.navigation
-    const resetNavAction = NavigationActions.reset({
+    const resetAction = StackActions.reset({
       index: 0,
-      actions: [NavigationActions.navigate({ routeName: 'Home' })]
+      actions: [
+        NavigationActions.navigate({ routeName: 'Home', params: { item }})
+      ]
     })
-    dispatch(resetNavAction)
+    dispatch(resetAction)
     navigate('IndividualDeck', { item })
   }
 
