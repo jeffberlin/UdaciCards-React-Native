@@ -6,7 +6,7 @@ import { addCardToDeck } from '../utils/api'
 import { styles } from '../utils/styles'
 import { Button } from './Button'
 
-class AddCard extends Component {
+class AddQuestion extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,7 +47,7 @@ class AddCard extends Component {
       actions: [NavigationActions.navigate({ routeName: 'Home' })]
     })
     dispatch(resetNavAction)
-    navigate('OpenDeck', { item })
+    navigate('IndividualDeck', { item })
   }
 
   render() {
@@ -81,4 +81,4 @@ class AddCard extends Component {
   }
 }
 
-export default AddCard
+export default AddQuestion

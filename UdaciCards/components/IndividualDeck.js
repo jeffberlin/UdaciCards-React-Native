@@ -42,7 +42,7 @@ class IndividualDeck extends Component {
   addNewCard = item => {
     const { navigate } = this.props.navigation
 
-    return navigate('AddCard', {
+    return navigate('AddQuestion', {
       item,
       navBack: this.backToDecks
     })

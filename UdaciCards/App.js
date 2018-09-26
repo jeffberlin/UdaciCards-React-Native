@@ -4,7 +4,7 @@ import { FontAwesome, Ionicons, MaterialIcons, MaterialCommunityIcons } from '@e
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import { styles } from './utils/styles'
-import AddCard from './components/AddCard'
+import AddQuestion from './components/AddQuestion'
 import AddDeck from './components/AddDeck'
 import DeckList from './components/DeckList'
 import Quiz from './components/Quiz'
@@ -72,8 +72,8 @@ const MainNavigator = createStackNavigator({
       }
     }
   },
-  AddCard: {
-    screen: AddCard,
+  AddQuestion: {
+    screen: AddQuestion,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
