@@ -25,14 +25,14 @@ const Tabs = createBottomTabNavigator({
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-list-box-outline' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => Platform.OS === 'ios' ? <Ionicons name='ios-list-box-outline' size={30} color={tintColor} /> : <MaterialIcons name='format-list-bulleted' size={30} color={tintColor} />
     }
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
       tabBarLabel: 'Add Deck',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-add-circle-outline' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => Platform.OS === 'ios' ? <Ionicons name='ios-add-circle-outline' size={30} color={tintColor} /> : <MaterialIcons name='add-circle-outline' size={30} color={tintColor} />
     }
   },
 },
