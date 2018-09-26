@@ -1,18 +1,18 @@
 import React from 'react'
 import { Text, View, Platform, StatusBar } from 'react-native'
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import { FontAwesome, Ionicons, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import { styles } from './utils/styles'
 import AddCard from './components/AddCard'
 import AddDeck from './components/AddDeck'
-import Decks from './components/Decks'
+import DeckList from './components/DeckList'
 import Quiz from './components/Quiz'
-import OpenDeck from './components/OpenDeck'
+import IndividualDeck from './components/IndividualDeck'
 import { setLocalNotification } from './utils/helpers'
 import { white, orange, gray } from './utils/colors'
 
-function AppStatusBar({ backgroundColor, ...props}) {
+function AppStatusBar({ backgroundColor, ...props }) {
   return (
     <View style={{backgroundColor, height: Constants.statusBarHeight}}>
       <StatusBar translucent backgroundColor={backgroundColor} {...props} />
@@ -21,8 +21,8 @@ function AppStatusBar({ backgroundColor, ...props}) {
 }
 
 const Tabs = createBottomTabNavigator({
-  Decks: {
-    screen: Decks,
+  DeckList: {
+    screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-list-box-outline' size={30} color={tintColor} />
@@ -63,8 +63,17 @@ const MainNavigator = createStackNavigator({
       header: null
     }
   },
-  OpenDeck: {
-    screen: OpenDeck,
+  IndividualDeck: {
+    screen: IndividualDeck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: orange
+      }
+    }
+  },
+  AddCard: {
+    screen: AddCard,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

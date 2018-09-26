@@ -15,22 +15,33 @@ class AddDeck extends Component {
 
   addNewDeck = () => {
     return saveDeckTitle(this.state.inputText)
-      .then(this.toOpenDeck(this.state.inputText),
+      .then(this.returnToDecks(this.state.inputText),
     )
   }
 
-  toOpenDeck = () => {
-    const { navigate, dispatch } = this.props.navigation
+  // navigateToOpenDeck = (item) => {
+  //   const { navigate, dispatch } = this.props.navigation
+  //
+  //   const resetNavAction = NavigationActions.reset({
+  //     index: 0,
+  //     actions: [
+  //       NavigationActions.navigate({ routeName: 'Home', params: { item }})
+  //     ]
+  //   })
+  //   dispatch(resetNavAction)
+  //   navigate('OpenDeck', { item })
+  // }
 
+  returnToDecks = (item, info) => {
+    const { navigate, dispatch } = this.props.navigation
     const resetNavAction = NavigationActions.reset({
       index: 0,
-      actions: [
-        NavigationActions.navigate({ routName: 'Home', params: { item }})
-      ]
+      actions: [NavigationActions.navigate({ routeName: 'Home' })]
     })
     dispatch(resetNavAction)
-    navigate('OpenDeck', { item })
+    // navigate('OpenDeck', { item })
   }
+
   render() {
     const { inputText } = this.state
 
@@ -45,7 +56,7 @@ class AddDeck extends Component {
             placeholder={'New Deck Title'}
           />
         </View>
-        <Button onPress={this.createDeck}>Create Deck</Button>
+        <Button onPress={this.addNewDeck}>Submit Deck</Button>
       </KeyboardAvoidingView>
     )
   }

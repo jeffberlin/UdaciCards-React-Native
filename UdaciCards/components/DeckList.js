@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, Platform, ScrollView, StyleSheet } from 'react-native'
 import { AppLoading } from 'expo'
 import { styles } from '../utils/styles'
-import { OpenDeck } from './OpenDeck'
+import { IndividualDeck } from './IndividualDeck'
 import { getDecks } from '../utils/api'
 import { formatQuestions } from '../utils/helpers'
 
-class Decks extends Component {
+class DeckList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,7 @@ class Decks extends Component {
   navigateToOpenDeck(item) {
     const { navigate } = this.props.navigation
 
-    return navigate('OpenDeck', { item })
+    return navigate('IndividualDeck', { item })
   }
 
   render() {
@@ -53,4 +53,4 @@ class Decks extends Component {
   }
 }
 
-export default Decks
+export default DeckList

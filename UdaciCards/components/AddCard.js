@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, Platform, KeyboardAvoidingView, Animated, TextInput } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-//import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
-//import { addCard } from '../actions'
 import { addCardToDeck } from '../utils/api'
 import { styles } from '../utils/styles'
 import { Button } from './Button'
@@ -32,17 +30,17 @@ class AddCard extends Component {
     Animated.timing(opacity, { toValue: 1, duration: 800 }).start()
   }
 
-  sumbitCard = () => {
+  sumbitCard = title => {
     const info = {
       question: this.state.question,
       answer: this.state.answer
     }
 
     return addCardToDeck(title, info)
-      .then(() => this.returnToDeck(this.state.title, info))
+      .then(() => this.returnToDecks(this.state.title, info))
   }
 
-  returnToDeck = (item, info) => {
+  returnToDecks = (item, info) => {
     const { navigate, dispatch } = this.props.navigation
     const resetNavAction = NavigationActions.reset({
       index: 0,
@@ -75,7 +73,7 @@ class AddCard extends Component {
             placeholder={'What\'s the answer?'}
           />
         </View>
-        <Button style={styles.button} onPress={() => this.addCardToDeck(this.props.navigate.state.params.item)}>
+        <Button style={styles.button} onPress={() => this.sumbitCard(this.props.navigation.state.params.item)}>
           Add Card
         </Button>
       </Animated.View>

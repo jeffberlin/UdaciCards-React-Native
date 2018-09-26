@@ -1,5 +1,5 @@
 import React from 'react'
-import { AsyncStorage } from 'react-native'
+import { View, AsyncStorage } from 'react-native'
 import { Notifications, Permissions } from 'expo'
 
 export function formatQuestions(questionsResults) {
@@ -26,6 +26,12 @@ export function createNotification() {
       sticky: false,
       vibrate: true
     }
+  }
+}
+
+export function getDailyReminderValue() {
+  return {
+    today: "Don't forget to take a quiz!"
   }
 }
 
@@ -57,4 +63,9 @@ export function setLocalNotification() {
           })
       }
     })
+}
+
+export function clearLocalNotification() {
+  return AsyncStorage.removeItem(NOTIFICATION_KEY)
+    .then(Notifications.cancelAllScheduledNotificationsAsync)
 }

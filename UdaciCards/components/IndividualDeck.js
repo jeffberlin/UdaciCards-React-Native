@@ -6,7 +6,7 @@ import { Button } from './Button'
 import { NavigationActions } from 'react-navigation'
 import { styles } from '../utils/styles'
 
-class OpenDeck extends Component {
+class IndividualDeck extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,7 +58,7 @@ class OpenDeck extends Component {
           {formatQuestions(deck.questions.length)}
         </Text>
         <Button onPress={() => this.addNewCard(deck.title)}>
-          Add Card
+          Add a Card
         </Button>
         {deck.questions.length > 0 ? (
           <Button onPress={() => this.quizStart(deck.title)}>
@@ -74,4 +74,4 @@ class OpenDeck extends Component {
   }
 }
 
-export default OpenDeck
+export default IndividualDeck

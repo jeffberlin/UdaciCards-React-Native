@@ -3,7 +3,7 @@ import { styles } from '../utils/styles'
 import { View, Text, Platform, Animated, ScrollView } from 'react-native'
 import { Button } from './Button'
 import { NavigationActions } from 'react-navigation'
-import { getDecks } from '../utils/helpers'
+import { getDeck } from '../utils/api'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class Quiz extends Component {
@@ -33,7 +33,7 @@ class Quiz extends Component {
   componentDidMount() {
     const { opacity } = this.state
 
-    getDecks(this.props.navigation.state.params.item)
+    getDeck(this.props.navigation.state.params.item)
       .then(results => this.setState(() => ({ deck: results })))
       .then(() => Animated.timing(
         opacity,
@@ -107,7 +107,7 @@ class Quiz extends Component {
         <Animated.View style={[styles.container, { opacity }]}>
           <Text>Quiz</Text>
           <Text>
-            {`${currentCardNumber + 1} of ${deck.questions.length}`}
+            Question {`${currentCardNumber + 1} of ${deck.questions.length}`}
           </Text>
           <View>
             <Text>
@@ -124,10 +124,10 @@ class Quiz extends Component {
               Your answer is:
             </Text>
             <Button onPress={() => this.incrementCounter(currentCardNumber, deck)}>
-              Corrent
+              Correct
             </Button>
             <Button onPress={() => this.nextCard(currentCardNumber, deck)}>
-              Wrong
+              Incorrect
             </Button>
           </View>
         </Animated.View>
