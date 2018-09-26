@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, Platform, StatusBar } from 'react-native'
-import { FontAwesome, Ionicons, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
+import { FontAwesome, Ionicons, MaterialIcons, MaterialCommunityIcons, Foundation } from '@expo/vector-icons'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import { styles } from './utils/styles'
@@ -25,7 +25,7 @@ const Tabs = createBottomTabNavigator({
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
-      tabBarIcon: ({ tintColor }) => Platform.OS === 'ios' ? <Ionicons name='ios-list-box-outline' size={30} color={tintColor} /> : <MaterialIcons name='format-list-bulleted' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => Platform.OS === 'ios' ? <Ionicons name='ios-list-box-outline' size={30} color={tintColor} /> : <Foundation name='list' size={30} color={tintColor} />
     }
   },
   AddDeck: {

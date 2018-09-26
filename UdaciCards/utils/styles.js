@@ -27,19 +27,22 @@ export const styles = StyleSheet.create({
     borderWidth: Platform.OS === 'ios' ? 1 : 0
   },
   button: {
-    backgroundColor: orange,
+    backgroundColor: Platform.OS === 'ios' ? 'rgba(52, 52, 52, 0)' : orange,
     width: 150,
     marginTop: 20,
     borderRadius: Platform.OS === 'ios' ? 3 : 0,
+    borderColor: orange,
+    borderWidth: Platform.OS === 'ios' ? 1 : 0,
     overflow: 'hidden',
     paddingLeft: 15,
     paddingRight: 15,
     paddingTop: 12,
     paddingBottom: 12,
     textAlign: 'center',
-    color: white,
+    color: Platform.OS === 'ios' ? orange : white,
     fontSize: 18,
-    fontWeight: Platform.OS === 'ios' ? '500' : '300'
+    fontWeight: Platform.OS === 'ios' ? '500' : '300',
+    letterSpacing: 0.7
   },
   deckView: {
     borderRadius: Platform.OS === 'ios' ? 16 : 2,
